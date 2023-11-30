@@ -1,0 +1,32 @@
+﻿<Window x:Class="AviaTable.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mvvm="clr-namespace:AviaTable.ViewModels"
+        xmlns:local="clr-namespace:AviaTable"
+        mc:Ignorable="d"
+        Title="AviaTable" Height="450" Width="800" MinWidth="600" MinHeight="400">
+    <Window.DataContext>
+        <mvvm:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Command="{Binding Path=LoadCommand}" />
+                    <MenuItem Header="Save" Command="{Binding Path=SaveCommand}" />
+                </MenuItem>
+            </Menu>
+            <DataGrid ItemsSource="{Binding Path=Users}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Фамилия" Binding="{Binding Path=LastName}" />
+                    <DataGridTextColumn Width="*" Header="Имя" Binding="{Binding Path=FirstName}" />
+                    <DataGridTextColumn Width="*" Header="Отчество" Binding="{Binding Path=Patronymic}" />
+                    <DataGridTextColumn Width="*" Header="Номер рейса" Binding="{Binding Path=FlightNumber}" />
+                    <DataGridTextColumn Width="*" Header="Время вылета" Binding="{Binding Path=DepartureTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
